@@ -1,0 +1,31 @@
+
+#table1{
+
+
+background-color:slategray
+
+}
+#addform{
+  background-color:rgb(195, 204, 214);
+  width : 70%;
+  margin: 50px;
+}
+#addform input{
+  width: 100
+}
+label{
+font-weight: bold
+
+}
+.NgIfElse {
+    show: boolean = true;
+  }
+
+ .visibility{
+visibility: visible;
+ }
+
+ span{
+
+  color: red;
+ }
