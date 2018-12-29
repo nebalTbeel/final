@@ -40,6 +40,12 @@ this.isloginin.next(success);
       return this.http.get<Iproduct[]>(this.url,{params:httpp});
        } 
 /******************************** */
+public getProductbyimage(img,id):Observable<Iproduct[]>{
+  let httpp = new HttpParams().set('image',img).set('id', id);
+
+  return this.http.get<Iproduct[]>(this.url,{params:httpp});
+   } 
+   /************************************** */
      addProduct(obj){
 
       return this.http.post<Iproduct>(this.url,obj)

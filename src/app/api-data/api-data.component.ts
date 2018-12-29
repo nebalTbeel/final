@@ -54,6 +54,7 @@ converted_image
      }
      reader.onload = this._handleReaderLoaded.bind(this);
      reader.readAsDataURL(file);
+
    }
    _handleReaderLoaded(e) {
      let reader = e.target;
@@ -107,19 +108,27 @@ console.log(this.del);
     this.router.navigate(['/apiDetails',api.id]);
   }
 /************************************ */
-prom = {}
+prom = {};
 edit(id){
 this.show = true;
 this.api.getProductById(id).subscribe(products =>this.prom =products )
 
 }
+ imageobj = {};
+updateProduct(ppp){
 
-updateProduct(){
-
-  console.log(this.prom);
+  console.log(ppp);
   //let id = this.prom;
-  this.prom.image = this.imageSrc;
-  this.api.updateProduct(this.prom).subscribe(res =>this.product.push(res))
+  let idd=ppp.id;
+  let imgnew = this.imageSrc
+
+ 
+console.log(imgnew);
+if(imgnew != ""){
+  ppp.image = imgnew;
+}
+
+  this.api.updateProduct(ppp).subscribe(res =>this.product.push(res))
 
 
 

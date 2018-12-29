@@ -103,9 +103,12 @@
     <label for="example-email-input" class="col-2 col-form-label">Image</label>
     <div class="col-4">
         <img [src]="imageSrc" style="max-width:300px;max-height:300px"/>
-        <input name="imageUrl" type="file" accept="image/*" (change)="handleInputChange($event)"    #image='ngModel' name='image' ngModel/>   
+        <input name="imageUrl" type="file" accept="image/*" (change)="handleInputChange($event)"    />   
        </div>
+    <input class="form-control"  hidden type="text" id="example-email-input"   [(ngModel)]='prom.image'   #image='ngModel' name='image' ngModel   >
     
+    <input class="form-control"  hidden type="text" id="example-email-input"   [(ngModel)]='imageSrc'  #imageimage='ngModel' name='imageimage' ngModel   >
+
   </div>
   
   
@@ -114,7 +117,7 @@
     <div class="col-4">
       
       <button type="submit"  class="btn btn-primary"  [style.visibility] ="show ?'hidden':'visible' " >add</button>  </div>
-      <button  type="button" (click) = "updateProduct()" class="btn btn-primary"  [style.visibility] ="!show ?'hidden':'visible' ">update</button> 
+      <button  type="button" (click) = "updateProduct(this.prom)" class="btn btn-primary"  [style.visibility] ="!show ?'hidden':'visible' ">update</button> 
      </div>
      <br>
   </form>
