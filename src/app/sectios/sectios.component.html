@@ -27,7 +27,7 @@
  
       <div class="col-lg-4 col-sm-6 text-center mb-4"  *ngFor="let obj of data" (click) = "onSelect(obj) ">
           <img class="rounded-circle img-fluid d-block mx-auto img" src="{{obj.img}}" alt="">
-          <h3>{{obj.name}}
+          <h3>{{obj.id}}-{{obj.name}}
            
           </h3>
           <p>{{obj.description}}</p>

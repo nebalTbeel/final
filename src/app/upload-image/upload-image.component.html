@@ -8,11 +8,22 @@
 <input type = "file" #image accept="image/*" (change)="handleFileInput($event.target.files)">
 <button type="submit" [disabled] ="image.value =='' || !imageForm.valid">submit </button>
 </form> -->
-<input 
+<!-- <input 
   style="display: none" 
   type="file" (change)="onFileChanged($event)" 
   #fileInput>
 <button (click)="fileInput.click()">Select File</button>
-<button (click)="onUpload()">Upload!</button>
+<button (click)="onUpload()">Upload!</button> -->
+
+You can upload image and store it as base64 encoded.
+
+In you template add this
+
+<div class="image-upload">
+    <img [src]="imageSrc" style="max-width:300px;max-height:300px"/>
+    <input name="imageUrl" type="file" accept="image/*" (change)="handleInputChange($event)" />
+</div> 
+
+
 
 </div>

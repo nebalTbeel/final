@@ -13,7 +13,26 @@ export class UploadImageComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+ files
+  imageSrc: string = '';
+
+  handleInputChange(e) {
+   let file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+    let pattern = /image-*/;
+    let reader = new FileReader();
+    if (!file.type.match(pattern)) {
+      alert('invalid format');
+      return;
+    }
+    reader.onload = this._handleReaderLoaded.bind(this);
+    reader.readAsDataURL(file);
+  }
+  _handleReaderLoaded(e) {
+    let reader = e.target;
+    this.imageSrc = reader.result;
+    console.log(this.imageSrc)
+  }
+
 //   imageUrl :string = "https://nebaltbeel.github.io/clothesProject/assets/img/hello.jpg";
 // fileToUpload :File = null;
 //   handleFileInput(File :FileList){

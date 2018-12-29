@@ -19,12 +19,16 @@ export class ApiDataComponent implements OnInit {
 
     
   }
-
+  islogin;
 product = [];
 show = false;
+base64Data
+converted_image
   ngOnInit() {
-
+    this.api.getLogin().subscribe(response => this.islogin = response)
+   // console.log(this.islogin);
     this.api.getProduct().subscribe(products =>this.product =products )
+
  
   }
   /********************************************** */
@@ -39,40 +43,56 @@ show = false;
   category = this.category
   image = this.image
    
+  imageSrc: string = '';
+  handleInputChange(e) {
+    let file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+     let pattern = /image-*/;
+     let reader = new FileReader();
+     if (!file.type.match(pattern)) {
+       alert('invalid format');
+       return;
+     }
+     reader.onload = this._handleReaderLoaded.bind(this);
+     reader.readAsDataURL(file);
+   }
+   _handleReaderLoaded(e) {
+     let reader = e.target;
+     this.imageSrc = reader.result;
+    // console.log(this.imageSrc)
+   }
 
-
+   
   addProduct(form){
 
-
-  /*  let fileToUpload = 'src/assets/img'
-   // let fi = form.controls.nativeElement;
-if (form.controls.image.value ) {
-    let fileToUpload = form.controls.image.value;
-    this.api
-        .upload(fileToUpload)
-        .subscribe(res => {
-            console.log('result'+res);
-        });
-    }
-console.log('image' +form.controls.image.value);
-*/
 
    let las_obj = this.product[this.product.length-1];
    let last_id=this.product[this.product.length-1].id;
     last_id++;
-    let image = this.image + Date()
+   // let image = this.imageSrc
 
 form.controls.id.value =  last_id;
-form.controls.image.value = image;
+form.controls.image.value = this.imageSrc;
+
 console.log(form);
-let obj =form.value;
-console.log(form.valid);
+let obj ={
+  "id": last_id,
+  "name": form.controls.name.value,
+  "size": form.controls.size.value,
+  "color": form.controls.color.value,
+  "prand": form.controls.prand.value,
+  "category": form.controls.category.value,
+  "image": this.imageSrc,
+  "price": form.controls.price.value,
+  "people": form.controls.people.value
+
+}
+console.log(obj);
 
 if(form.valid == true){
 
 
 
-   this.api.addProduct(obj).subscribe(res =>this.product.push(res))
+ this.api.addProduct(obj).subscribe(res =>this.product.push(res))
   }   
   }
   /************************************ */
@@ -97,8 +117,8 @@ this.api.getProductById(id).subscribe(products =>this.prom =products )
 updateProduct(){
 
   console.log(this.prom);
-  //let id = this.prom.id;
-
+  //let id = this.prom;
+  this.prom.image = this.imageSrc;
   this.api.updateProduct(this.prom).subscribe(res =>this.product.push(res))
 
 

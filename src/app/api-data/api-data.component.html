@@ -1,6 +1,9 @@
+<div style="background-color:antiquewhite;">
+
 <br>
 <h1>
   Products Management</h1>
+ 
   <br>
   <div id=addform>
       <form #addForm ="ngForm" (ngSubmit) = 'addProduct(addForm)' id="addform">
@@ -35,7 +38,7 @@
     <label for="example-email-input" class="col-2 col-form-label">Color</label>
     <div class="col-4">
       <input class="form-control"  id="example-email-input" required 
-      minlength="5"  #color='ngModel' name='color' ngModel [(ngModel)]='prom.color'  required>
+       #color='ngModel' name='color' ngModel [(ngModel)]='prom.color'  required>
   
     </div>
     <span *ngIf='addForm.submitted && color.errors && color.errors.required '>
@@ -99,8 +102,9 @@
   <div class="form-group row">
     <label for="example-email-input" class="col-2 col-form-label">Image</label>
     <div class="col-4">
-      <input type="file" class="form-control"  id="example-email-input"   #image='ngModel' name='image' ngModel>
-    </div>
+        <img [src]="imageSrc" style="max-width:300px;max-height:300px"/>
+        <input name="imageUrl" type="file" accept="image/*" (change)="handleInputChange($event)"    #image='ngModel' name='image' ngModel/>   
+       </div>
     
   </div>
   
@@ -119,7 +123,7 @@
   <br>
   <br>
   
-  <table class="table" id="table1">
+  <table class="table .table-striped" id="table1">
     <thead class="thead-dark">
       <tr>
         <th scope="col">id</th>
@@ -149,7 +153,7 @@
         <td>{{obj.price}}</td>
         <td *ngIf = "obj.people == 1">Men</td>
         <td *ngIf = "obj.people == 2">kids</td>
-        <td >{{obj.image}}</td>
+        <td ><img  [src]="obj.image" alt="Select Image" class="imgimg"/></td>
   
         <td><button (click) = "edit(obj.id)"  class="btn btn-primary">Edit</button></td>
   
@@ -169,4 +173,4 @@
   -->
    
   
-  
+  </div>

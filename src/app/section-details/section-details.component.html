@@ -5,14 +5,14 @@
 
 <div class="col-lg-4 col-sm-6 text-center mb-4">
     
-    <a (click) = "getMendata(1,secId)"><img class="rounded-circle img-fluid d-block mx-auto" src="../../assets/img/man.jpg" alt="">
+    <a (click) = "getMendata(secId,1)"><img class="rounded-circle img-fluid d-block mx-auto" src="../../assets/img/man.jpg" alt="">
       <h3>Men
       </h3></a>  </div>
 
 
 <div class="col-lg-4 col-sm-6 text-center mb-4">
   
-     <a (click) = "getMendata(2,secId)">  <img class="rounded-circle img-fluid d-block mx-auto" src="../../assets/img/kids.jpg" alt="">
+     <a (click) = "getMendata(secId,2)">  <img class="rounded-circle img-fluid d-block mx-auto" src="../../assets/img/kids.jpg" alt="">
       <h3>Kids
         
       </h3></a> 
@@ -34,7 +34,7 @@
       </div> -->
 
       <div class="col-lg-4 col-sm-6 text-center mb-4"   *ngFor = "let obj of category ">
-        <img class="rounded-circle img-fluid d-block mx-auto det" src="../../assets/img/images.jpg" alt="">
+        <img class="rounded-circle img-fluid d-block mx-auto det" [src]="obj.image" alt="">
         <h5>type : {{obj.name}}  </h5>       
        
         <p>size : {{obj.size}}</p><br>
